@@ -43,7 +43,7 @@ const SLIDERS = {
     { key: 'distr', label: 'Розподіл обленерго, грн/МВт·год', min: 1500, max: 4500, step: 100, fmt: (v) => `${fN(v)} грн`, tag: 'snapshot', tc: 'var(--text3)' },
   ],
   heat: [
-    { key: 'hp', label: 'Ціна тепла в мережу, грн/Гкал', min: 500, max: 5000, step: 100, fmt: (v) => `${fN(v)} грн`, tag: 'ЛТЕ', tc: 'var(--green)' },
+    { key: 'hp', label: 'Ціна тепла в мережу, грн/Гкал', min: 0, max: 5000, step: 100, fmt: (v) => v === 0 ? 'Вимкнено' : `${fN(v)} грн`, tag: 'ЛТЕ', tc: 'var(--green)' },
   ],
   el: [
     { key: 'elB', label: 'Базове ел. навантаження, МВт', min: 0.1, max: 5, step: 0.05, fmt: (v) => `${v.toFixed(2)} МВт` },
