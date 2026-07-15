@@ -273,15 +273,12 @@ async function syncFromEnergyMap(localSnapshot) {
   const heatFilters = parseFilters('ENERGYMAP_HEAT');
   const greenFilters = parseFilters('ENERGYMAP_GREEN_TARIFF');
 
-  const baseDownloads = [
+  const [gasCsv, rdnCsv, heatCsv, greenCsv] = await Promise.all([
     fetchEnergyMapCsv({ token, uuid: gasUuid }),
     fetchEnergyMapCsv({ token, uuid: rdnUuid }),
-  ];
-  if (heatUuid && heatManual == null) baseDownloads.push(fetchEnergyMapCsv({ token, uuid: heatUuid }));
-  if (greenUuid) baseDownloads.push(fetchEnergyMapCsv({ token, uuid: greenUuid }));
-
-  const downloads = await Promise.all(baseDownloads);
-  const [gasCsv, rdnCsv, heatCsv, greenCsv] = downloads;
+    heatUuid && heatManual == null ? fetchEnergyMapCsv({ token, uuid: heatUuid }) : Promise.resolve(null),
+    greenUuid ? fetchEnergyMapCsv({ token, uuid: greenUuid }) : Promise.resolve(null),
+  ]);
 
   const gp = latestNumberFromCsv(gasCsv, gasColumn);
   const rdm = latestNumberFromCsv(rdnCsv, rdnColumn, rdnFilters);
