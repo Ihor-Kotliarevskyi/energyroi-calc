@@ -88,6 +88,8 @@ function drawChart(canvas, cf) {
 export default function SolarCashflowScreen() {
   const { P, result } = useSolar();
   const canvasRef = useRef(null);
+  const calcType = P.calcType ?? 'solar';
+  const isBess = calcType === 'bess';
 
   useEffect(() => {
     if (!canvasRef.current) return undefined;
@@ -98,12 +100,23 @@ export default function SolarCashflowScreen() {
   const npv = result.cf[15];
   const be = result.cf.findIndex((v) => v >= 0);
   const pbCls = result.pb ? (result.pb < 5 ? 'cg' : result.pb < 8 ? 'ca' : 'cr') : 'cr';
-  const gridPrices = [5, 6, 7, 8, 9, 10];
-  const feedTariffs = [
-    { t: 3.0, c: 'var(--green)', l: 'Тариф 3.0' },
-    { t: 4.2, c: 'var(--blue)', l: 'Тариф 4.2' },
-    { t: 5.2, c: 'var(--red)', l: 'Тариф 5.2' },
-  ];
+
+  // Таблиця чутливості — адаптується до режиму
+  const sensitivityRows = isBess
+    ? [100, 150, 200, 250, 300, 365]   // cyclesPerYear
+    : [5, 6, 7, 8, 9, 10];             // gridPrice
+
+  const sensitivityCols = isBess
+    ? [
+        { label: 'Маржа 8 грн', key: 8,  pT: 14, oT: 6 },
+        { label: 'Маржа 10 грн', key: 10, pT: 16, oT: 6 },
+        { label: 'Маржа 14 грн', key: 14, pT: 20, oT: 6 },
+      ]
+    : [
+        { t: 3.0, c: 'var(--green)', l: 'Тариф 3.0' },
+        { t: 4.2, c: 'var(--blue)',  l: 'Тариф 4.2' },
+        { t: 5.2, c: 'var(--red)',   l: 'Тариф 5.2' },
+      ];
 
   return (
     <div className="screen active">
@@ -150,23 +163,22 @@ export default function SolarCashflowScreen() {
               <table className="st">
                 <thead>
                   <tr>
-                    <th>Ціна мережі</th>
-                    {feedTariffs.map((item) => (
-                      <th key={item.t} style={{ color: item.c }}>{item.l}</th>
+                    <th>{isBess ? 'Циклів/рік' : 'Ціна мережі'}</th>
+                    {sensitivityCols.map((col) => (
+                      <th key={col.label || col.l} style={{ color: col.c }}>{col.label || col.l}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {gridPrices.map((gp) => (
-                    <tr key={gp}>
-                      <td>{gp.toFixed(1)} грн</td>
-                      {feedTariffs.map((item) => {
-                        const sc = calc({
-                          ...P,
-                          gridPrice: gp,
-                          feedInTariff: item.t,
-                        });
-                        return <td key={item.t}>{sc.pb ? `${sc.pb.toFixed(1)} р.` : '∞'}</td>;
+                  {sensitivityRows.map((rowVal) => (
+                    <tr key={rowVal}>
+                      <td>{isBess ? `${rowVal} цикл.` : `${rowVal.toFixed(1)} грн`}</td>
+                      {sensitivityCols.map((col) => {
+                        const overrides = isBess
+                          ? { cyclesPerYear: rowVal, peakTariff: col.pT, offPeakTariff: col.oT }
+                          : { gridPrice: rowVal, feedInTariff: col.t };
+                        const sc = calc({ ...P, ...overrides });
+                        return <td key={col.label || col.l}>{sc.pb ? `${sc.pb.toFixed(1)} р.` : '∞'}</td>;
                       })}
                     </tr>
                   ))}

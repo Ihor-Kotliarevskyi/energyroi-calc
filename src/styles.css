@@ -1,4 +1,4 @@
-﻿/* в”Ђв”Ђ Google Fonts в”Ђв”Ђ */
+/* в”Ђв”Ђ Google Fonts в”Ђв”Ђ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* в”Ђв”Ђ Design tokens в”Ђв”Ђ */
@@ -1865,4 +1865,90 @@ canvas {
   letter-spacing: -0.3px;
 }
 
+/* ── Перемикач режиму (СЕС / УЗЕ / СЕС+УЗЕ) ─────────────────────────────── */
+.calc-type-switcher {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
 
+.calc-type-btn {
+  flex: 1;
+  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+}
+.calc-type-btn:hover {
+  border-color: var(--border2);
+  background: var(--bg2);
+}
+.calc-type-btn.active {
+  border-color: var(--blue);
+  background: var(--blue-bg);
+}
+.calc-type-btn.active .calc-type-label {
+  color: var(--blue);
+}
+
+.calc-type-label {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--text);
+}
+.calc-type-hint {
+  font-size: 11px;
+  color: var(--text3);
+  text-align: center;
+}
+
+/* ── Toggle кнопка (аРВЧ, вкл/викл) ─────────────────────────────────────── */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.toggle-label {
+  font-size: var(--fs-xs);
+  color: var(--text2);
+  flex: 1;
+}
+.toggle-btn {
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+  color: var(--text2);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.toggle-btn.on {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
+/* ── Info-box (підказка) ─────────────────────────────────────────────────── */
+.ib {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--blue-bg);
+  color: var(--blue);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.ib.amber {
+  background: var(--amber-bg);
+  color: var(--amber);
+}

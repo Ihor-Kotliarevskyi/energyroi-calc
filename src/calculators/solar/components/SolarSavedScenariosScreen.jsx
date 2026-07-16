@@ -167,7 +167,12 @@ export default function SolarSavedScenariosScreen({ onLoadScenario }) {
                 </div>
               </div>
               <div className="sc-saved-metrics">
-                <div className="sc-saved-metric"><span className="sc-saved-metric-label">Генерація</span><span>{fN(scenario.metrics.year1Gen, 0)} кВт·год</span></div>
+                <div className="sc-saved-metric">
+                  <span className="sc-saved-metric-label">Тип</span>
+                  <span style={{ fontSize: 11, fontWeight: 600 }}>
+                    {scenario.P?.calcType === 'bess' ? '🔋 УЗЕ' : scenario.P?.calcType === 'solar_bess' ? '⚡ СЕС+УЗЕ' : '☀️ СЕС'}
+                  </span>
+                </div>
                 <div className="sc-saved-metric"><span className="sc-saved-metric-label">Окупність</span><span>{scenario.metrics.pb ? `${scenario.metrics.pb.toFixed(1)} р.` : '∞'}</span></div>
                 <div className="sc-saved-metric"><span className="sc-saved-metric-label">Net</span><span>{fM(scenario.metrics.net, 2)}</span></div>
               </div>
