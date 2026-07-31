@@ -83,6 +83,85 @@ const ICONS = {
       strokeWidth="1.8"
     />
   ),
+  battery: (
+    <>
+      <rect
+        x="3"
+        y="7"
+        width="17"
+        height="10"
+        rx="2"
+        ry="2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <rect
+        x="20"
+        y="10"
+        width="1.8"
+        height="4"
+        rx="0.6"
+        fill="currentColor"
+      />
+      <path
+        d="M6.5 12h4.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </>
+  ),
+  'solar-bess': (
+    <>
+      {/* Battery */}
+      <rect
+        x="3"
+        y="9"
+        width="15"
+        height="9"
+        rx="2"
+        ry="2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <rect
+        x="18"
+        y="11.5"
+        width="1.8"
+        height="4"
+        rx="0.6"
+        fill="currentColor"
+      />
+
+      {/* Sun */}
+      <circle
+        cx="17.5"
+        cy="6.5"
+        r="2.3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M17.5 2.5v1.3
+         M17.5 9.7V11
+         M13.5 6.5h1.3
+         M20.7 6.5H22
+         M20.2 3.8l-.9.9
+         M15.7 8.3l-.9.9
+         M20.2 9.2l-.9-.9
+         M15.7 4.7l-.9-.9"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </>
+  ),
+
 };
 
 export default function Icon({ name, className = '', title }) {

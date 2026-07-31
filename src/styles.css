@@ -1898,6 +1898,21 @@ canvas {
   color: var(--blue);
 }
 
+.calc-type-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text3);
+  transition: color 0.15s;
+}
+.calc-type-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.calc-type-btn.active .calc-type-icon {
+  color: var(--blue);
+}
+
 .calc-type-label {
   font-size: var(--fs-sm);
   font-weight: 700;
