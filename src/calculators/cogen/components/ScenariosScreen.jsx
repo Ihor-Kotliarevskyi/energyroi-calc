@@ -60,7 +60,7 @@ export default function ScenariosScreen() {
   ];
 
   const metrics = [
-    { label: 'Собів. ел.', format: (r) => fG(r.ecg, 2) },
+    { label: 'Собів. ел., грн/кВт·год', format: (r) => fG(r.ecg, 2) },
     { label: 'Дохід, млн', format: (r) => fM(r.tot, 1) },
     { label: 'Прибуток, млн', format: (r) => fM(r.net, 1) },
     { label: 'Окупність', format: (r) => (r.pb ? `${r.pb.toFixed(1)} р.` : '∞') },

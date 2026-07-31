@@ -102,7 +102,7 @@ export default function BalanceScreen() {
                 <div className="ms">млн кВт·год</div>
               </div>
               <div className="m">
-                <div className="ml">економія на ел.</div>
+                <div className="ml">економія на ел. енергії</div>
                 <div className="mv cg">{fN(result.eSav / 1e6, 1)}</div>
                 <div className="ms">млн грн / рік</div>
               </div>

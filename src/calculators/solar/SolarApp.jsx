@@ -13,14 +13,14 @@ import SolarSavedScenariosScreen from './components/SolarSavedScenariosScreen.js
 import SolarFaqScreen from './components/SolarFaqScreen.jsx';
 
 const TITLE_BY_TYPE = {
-  solar:      'Сонячна електростанція',
-  bess:       'Установка Запасу Енергії',
+  solar: 'Сонячна електростанція',
+  bess: 'Установка запасу енергії',
   solar_bess: 'СЕС + УЗЕ',
 };
 
 const GEN_TAB_LABEL = {
-  solar:      'Генерація',
-  bess:       'Цикли',
+  solar: 'Генерація',
+  bess: 'Цикли',
   solar_bess: 'Генерація',
 };
 
@@ -33,12 +33,12 @@ export default function SolarApp({ calcMode, onModeChange }) {
 
   const TABS = useMemo(() => [
     { key: 'params', label: 'Параметри' },
-    { key: 'dash',   label: 'Результат' },
-    { key: 'gen',    label: GEN_TAB_LABEL[calcType] ?? 'Генерація' },
-    { key: 'cf',     label: 'Графік' },
-    { key: 'sc',     label: 'Сценарії' },
-    { key: 'saved',  label: 'Збережені' },
-    { key: 'faq',    label: 'FAQ' },
+    { key: 'dash', label: 'Результат' },
+    { key: 'gen', label: GEN_TAB_LABEL[calcType] ?? 'Генерація' },
+    { key: 'cf', label: 'Графік' },
+    { key: 'sc', label: 'Сценарії' },
+    { key: 'saved', label: 'Збережені' },
+    { key: 'faq', label: 'FAQ' },
   ], [calcType]);
 
   if (loading) {
@@ -60,12 +60,12 @@ export default function SolarApp({ calcMode, onModeChange }) {
       <TabBar tabs={TABS} active={activeTab} onChange={setActiveTab} />
       <div className="content">
         {activeTab === 'params' && <SolarParamsScreen />}
-        {activeTab === 'dash'   && <SolarDashboardScreen />}
-        {activeTab === 'gen'    && <SolarGenerationScreen />}
-        {activeTab === 'cf'     && <SolarCashflowScreen />}
-        {activeTab === 'sc'     && <SolarScenariosScreen />}
-        {activeTab === 'saved'  && <SolarSavedScenariosScreen onLoadScenario={() => setActiveTab('params')} />}
-        {activeTab === 'faq'    && <SolarFaqScreen />}
+        {activeTab === 'dash' && <SolarDashboardScreen />}
+        {activeTab === 'gen' && <SolarGenerationScreen />}
+        {activeTab === 'cf' && <SolarCashflowScreen />}
+        {activeTab === 'sc' && <SolarScenariosScreen />}
+        {activeTab === 'saved' && <SolarSavedScenariosScreen onLoadScenario={() => setActiveTab('params')} />}
+        {activeTab === 'faq' && <SolarFaqScreen />}
       </div>
     </div>
   );

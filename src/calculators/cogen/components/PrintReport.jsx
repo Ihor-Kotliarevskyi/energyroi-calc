@@ -63,7 +63,7 @@ export default function PrintReport({ scenario }) {
             <tr><td>РДН</td><td>{fN(P.rdm)} грн/МВт·год</td></tr>
             <tr><td>Передача (Укренерго)</td><td>{fN(P.trans)} грн/МВт·год</td></tr>
             <tr><td>Розподіл (Львівобленерго 2кл)</td><td>{fN(P.distr)} грн/МВт·год</td></tr>
-            <tr><td>Кінцева ціна ел. для БЦ</td><td>{((P.rdm + P.trans + P.distr) / 1000).toFixed(2)} грн/кВт·год</td></tr>
+            <tr><td>Кінцева ціна електроенергії для БЦ</td><td>{((P.rdm + P.trans + P.distr) / 1000).toFixed(2)} грн/кВт·год</td></tr>
             <tr><td>Ціна тепла в мережу</td><td>{fN(P.hp)} грн/Гкал</td></tr>
             <tr><td>Мережа бере тепло влітку</td><td>{P.sh === 0 ? 'Ні' : P.sh === 0.5 ? '50%' : 'Так'}</td></tr>
             <tr><td>Базове ел. навантаження</td><td>{P.elB.toFixed(2)} МВт</td></tr>

@@ -105,8 +105,8 @@ export default function CashflowScreen() {
   const elP = [6, 7, 8, 9, 10, 11, 12, 13, 14];
   const gS = [
     { g: 18000, c: 'var(--green)', l: 'Газ 18т.' },
-    { g: 21000, c: 'var(--blue)',  l: 'Газ 21т.' },
-    { g: 24000, c: 'var(--red)',   l: 'Газ 24т.' },
+    { g: 21000, c: 'var(--blue)', l: 'Газ 21т.' },
+    { g: 24000, c: 'var(--red)', l: 'Газ 24т.' },
   ];
 
   return (
@@ -155,7 +155,7 @@ export default function CashflowScreen() {
               <table className="st">
                 <thead>
                   <tr>
-                    <th>Ціна ел.</th>
+                    <th>Ціна ел. енергії, грн/кВт·год</th>
                     {gS.map((s) => (
                       <th key={s.g} style={{ color: s.c }}>{s.l}</th>
                     ))}
