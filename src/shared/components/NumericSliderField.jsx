@@ -11,10 +11,10 @@ function decimalsFromStep(step) {
 }
 
 export default function NumericSliderField({ slider, value, onChange }) {
-  const [draftValue, setDraftValue] = useState(String(Math.trunc(value) ?? ''));
+  const [draftValue, setDraftValue] = useState(value.toFixed(2) ?? '');
 
   useEffect(() => {
-    setDraftValue(String(Math.trunc(value) ?? ''));
+    setDraftValue(value.toFixed(2) ?? '');
   }, [value]);
 
   const commitValue = (rawValue) => {
